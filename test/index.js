@@ -4,6 +4,7 @@ import { BoxModel } from '../src/index.js';
 const model = new BoxModel(document.getElementById('display'));
 
 // Page controls.
+const showBorders = document.getElementById('showBorders');
 const showDimensions = document.getElementById('showDimensions');
 const showLabels = document.getElementById('showLabels');
 const allowOverlap = document.getElementById('allowOverlap');
@@ -47,6 +48,7 @@ const positionLeft = document.getElementById('positionLeft');
 const positionLeftOutput = document.getElementById('positionLeftOutput');
 
 window.update = () => {
+	model.showBorders = Boolean(showBorders.checked);
 	model.showDimensions = Boolean(showDimensions.checked);
 	model.showLabels = Boolean(showLabels.checked);
 	model.allowOverlap = Boolean(allowOverlap.checked);

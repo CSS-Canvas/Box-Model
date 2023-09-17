@@ -13,6 +13,10 @@
 			<form action="event.preventDefault()">
 				<fieldset>
 					<h3>General</h3>
+					<label for="showBorders">
+						Show Borders
+						<input type="checkbox" name="showBorders" id="showBorders" checked oninput="window.update()">
+					</label>
 					<label for="showDimensions">
 						Show Dimensions
 						<input type="checkbox" name="showDimensions" id="showDimensions" checked oninput="window.update()">

@@ -21,6 +21,7 @@ export class BoxModel {
 	}
 	#element;
 	#parent;
+	#showBorders = true;
 	#showDimensions = true;
 	#showLabels = true;
 	#spacing = {
@@ -73,15 +74,21 @@ export class BoxModel {
 		this.update();
 	}
 
-	get showLabels () { return this.#showLabels; }
-	set showLabels (value) {
-		this.#showLabels = value;
+	get showBorders () { return this.#showBorders; }
+	set showBorders (value) {
+		this.#showBorders = value;
 		this.update();
 	}
 
 	get showDimensions () { return this.#showDimensions; }
 	set showDimensions (value) {
 		this.#showDimensions = value;
+		this.update();
+	}
+
+	get showLabels () { return this.#showLabels; }
+	set showLabels (value) {
+		this.#showLabels = value;
 		this.update();
 	}
 
@@ -137,10 +144,10 @@ export class BoxModel {
 	}
 
 	#applyBoxBorder (element, type) {
-		element.style.borderTopWidth = this.allowOverlap && this.#isZero(this.#dimensions[type][0]) ? '0px' : '1px';
-		element.style.borderRightWidth = this.allowOverlap && this.#isZero(this.#dimensions[type][1]) ? '0px' : '1px';
-		element.style.borderBottomWidth = this.allowOverlap && this.#isZero(this.#dimensions[type][2]) ? '0px' : '1px';
-		element.style.borderLeftWidth = this.allowOverlap && this.#isZero(this.#dimensions[type][3]) ? '0px' : '1px';
+		element.style.borderTopWidth = !this.#showBorders || this.allowOverlap && this.#isZero(this.#dimensions[type][0]) ? '0px' : '1px';
+		element.style.borderRightWidth = !this.#showBorders || this.allowOverlap && this.#isZero(this.#dimensions[type][1]) ? '0px' : '1px';
+		element.style.borderBottomWidth = !this.#showBorders || this.allowOverlap && this.#isZero(this.#dimensions[type][2]) ? '0px' : '1px';
+		element.style.borderLeftWidth = !this.#showBorders || this.allowOverlap && this.#isZero(this.#dimensions[type][3]) ? '0px' : '1px';
 	}
 
 	update () {
@@ -148,7 +155,7 @@ export class BoxModel {
 		const contentBox = document.createElement('div');
 		this.#applyBoxStyles(contentBox);
 		contentBox.style.backgroundColor = colors.contentBox;
-		contentBox.style.border = `1px solid ${colors.contentBorder}`;
+		contentBox.style.border = `${this.#showBorders ? '1px' : '0px'} solid ${colors.contentBorder}`;
 		const contentWidth = Math.max(this.content[0], this.#spacing.value * 4);
 		const contentHeight = Math.max(this.content[1], this.#spacing.value * 4);
 		contentBox.style.width = `${contentWidth}px`;
