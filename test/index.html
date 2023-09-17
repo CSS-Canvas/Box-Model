@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="index.css">
+		<script src="index.js" type="module" defer></script>
+	</head>
+	<body>
+		<section id="display"></section>
+		<section>
+			<form action="event.preventDefault()">
+				<fieldset>
+					<h3>General</h3>
+					<label for="allowOverlap">
+						Allow Overlap
+						<input type="checkbox" name="allowOverlap" id="allowOverlap" oninput="window.update()">
+					</label>
+				</fieldset>
+				<fieldset>
+					<h3>Content</h3>
+					<label for="contentWidth">
+						Width
+						<input type="range" name="contentWidth" id="contentWidth" min="0" max="1000" step="10" value="200" oninput="window.update()">
+						<output id="contentWidthOutput"></output>
+					</label>
+					<label for="contentHeight">
+						Height
+						<input type="range" name="contentHeight" id="contentHeight" min="0" max="1000" step="10" value="200" oninput="window.update()">
+						<output id="contentHeightOutput"></output>
+					</label>
+				</fieldset>
+				<fieldset>
+					<h3>Padding</h3>
+					<label for="paddingTop">
+						Top
+						<input type="range" name="paddingTop" id="paddingTop" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="paddingTopOutput"></output>
+					</label>
+					<label for="paddingRight">
+						Right
+						<input type="range" name="paddingRight" id="paddingRight" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="paddingRightOutput"></output>
+					</label>
+					<label for="paddingBottom">
+						Bottom
+						<input type="range" name="paddingBottom" id="paddingBottom" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="paddingBottomOutput"></output>
+					</label>
+					<label for="paddingLeft">
+						Left
+						<input type="range" name="paddingLeft" id="paddingLeft" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="paddingLeftOutput"></output>
+					</label>
+				</fieldset>
+				<fieldset>
+					<h3>Border</h3>
+					<label for="borderTop">
+						Top
+						<input type="range" name="borderTop" id="borderTop" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="borderTopOutput"></output>
+					</label>
+					<label for="borderRight">
+						Right
+						<input type="range" name="borderRight" id="borderRight" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="borderRightOutput"></output>
+					</label>
+					<label for="borderBottom">
+						Bottom
+						<input type="range" name="borderBottom" id="borderBottom" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="borderBottomOutput"></output>
+					</label>
+					<label for="borderLeft">
+						Left
+						<input type="range" name="borderLeft" id="borderLeft" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="borderLeftOutput"></output>
+					</label>
+				</fieldset>
+				<fieldset>
+					<h3>Margin</h3>
+					<label for="marginTop">
+						Top
+						<input type="range" name="marginTop" id="marginTop" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="marginTopOutput"></output>
+					</label>
+					<label for="marginRight">
+						Right
+						<input type="range" name="marginRight" id="marginRight" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="marginRightOutput"></output>
+					</label>
+					<label for="marginBottom">
+						Bottom
+						<input type="range" name="marginBottom" id="marginBottom" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="marginBottomOutput"></output>
+					</label>
+					<label for="marginLeft">
+						Left
+						<input type="range" name="marginLeft" id="marginLeft" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="marginLeftOutput"></output>
+					</label>
+				</fieldset>
+				<fieldset>
+					<h3>Position</h3>
+					<label for="positionTop">
+						Top
+						<input type="range" name="positionTop" id="positionTop" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="positionTopOutput"></output>
+					</label>
+					<label for="positionRight">
+						Right
+						<input type="range" name="positionRight" id="positionRight" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="positionRightOutput"></output>
+					</label>
+					<label for="positionBottom">
+						Bottom
+						<input type="range" name="positionBottom" id="positionBottom" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="positionBottomOutput"></output>
+					</label>
+					<label for="positionLeft">
+						Left
+						<input type="range" name="positionLeft" id="positionLeft" min="0" max="500" step="10" value="50" oninput="window.update()">
+						<output id="positionLeftOutput"></output>
+					</label>
+				</fieldset>
+			</form>
+		</section>
+	</body>
+</html>
