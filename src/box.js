@@ -19,7 +19,7 @@ export class BoxModel {
 		margin: [0, 0, 0, 0],
 		position: [0, 0, 0, 0]
 	}
-	#element;
+	element;
 	#parent;
 	#showBorders = true;
 	#showDimensions = true;
@@ -66,11 +66,11 @@ export class BoxModel {
 	get parent () { return this.#parent; }
 	set parent (value) {
 		this.#parent = value;
-		this.#element?.remove();
-		this.#element = document.createElement('div');
-		this.#element.className = 'boxModelDisplay';
-		this.#applyBoxStyles(this.#element);
-		this.#parent.append(this.#element);
+		this.element?.remove();
+		this.element = document.createElement('div');
+		this.element.className = 'boxModelDisplay';
+		this.#applyBoxStyles(this.element);
+		this.#parent.append(this.element);
 		this.update();
 	}
 
@@ -240,8 +240,8 @@ export class BoxModel {
 			positionBox.append(this.#createLabel('Position'));
 		}
 
-		this.#element.innerHTML = '';
-		this.#element.append(positionBox);
+		this.element.innerHTML = '';
+		this.element.append(positionBox);
 		positionBox.append(marginBox);
 		marginBox.append(borderBox);
 		borderBox.append(paddingBox);

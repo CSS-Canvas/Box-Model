@@ -1,6 +1,8 @@
 export class BoxModel {
 	constructor (parent: HTMLElement);
 
+	element: HTMLDivElement;
+
 	get content (): [number, number];
 	set content (value: [number, number]);
 
