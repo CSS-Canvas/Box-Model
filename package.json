@@ -1,0 +1,19 @@
+{
+	"name": "box-model",
+	"version": "0.1.0",
+	"description": "",
+	"main": "src/index.js",
+	"types": "./src/index.d.ts",
+	"type": "module",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {},
+	"keywords": [
+		"css",
+		"box-model",
+		"visualization"
+	],
+	"author": "Giga <contact@zakweb.dev>",
+	"license": "MIT"
+}
