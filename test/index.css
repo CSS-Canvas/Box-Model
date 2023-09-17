@@ -3,21 +3,61 @@
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+	margin: 0;
+	background-color: #f8f8f8;
+}
+
+main {
+	position: relative;
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: auto auto;
+	flex-flow: column nowrap;
+}
+
+h1 {
+	margin: 0 0 0.2em;
+	padding-inline-start: 0.25rem;
+	font-weight: 400;
+}
+
+h2 {
+	margin: 0.1em 0;
+	padding-inline-start: 0.25rem;
+	color: grey;
+	font-weight: 300;
+}
+
+h3 {
+	margin: 0.2em 0;
+	font-weight: 400;
+}
+
+section#settings {
+	position: absolute;
+	z-index: 2;
+	left: 0;
+}
+
+section#display {
+	position: relative;
+	z-index: 1;
+	overflow: auto;
+}
+
 form {
 	max-width: 30rem;
-	margin: 1rem auto;
-	border: 1px solid grey;
+	background-color: white;
+	border: 1px solid lightgrey;
+	border-left: unset;
 }
 
 fieldset {
 	display: flex;
 	flex-direction: column;
+	margin: 0;
 	border: unset;
-}
-
-h3 {
-	margin: 0.2em 0;
-	font-weight: 600;
 }
 
 #exampleElement {
