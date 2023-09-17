@@ -1,7 +1,8 @@
-import { BoxModel } from '../src/index.js';
+import { BoxModel, BoxModelOverlay } from '../src/index.js';
 
 // Box model.
 const model = new BoxModel(document.getElementById('display'));
+const overlay = new BoxModelOverlay(document.getElementById('exampleElement'));
 
 // Page controls.
 const showBorders = document.getElementById('showBorders');
@@ -9,7 +10,7 @@ const showDimensions = document.getElementById('showDimensions');
 const showLabels = document.getElementById('showLabels');
 const allowOverlap = document.getElementById('allowOverlap');
 const updateFromElement = document.getElementById('updateFromElement');
-const exampleElement = document.getElementById('exampleElement');
+const renderOverlay = document.getElementById('renderOverlay');
 const contentWidth = document.getElementById('contentWidth');
 const contentWidthOutput = document.getElementById('contentWidthOutput');
 const contentHeight = document.getElementById('contentHeight');
@@ -52,6 +53,7 @@ window.update = () => {
 	model.showDimensions = Boolean(showDimensions.checked);
 	model.showLabels = Boolean(showLabels.checked);
 	model.allowOverlap = Boolean(allowOverlap.checked);
+	overlay.enabled = Boolean(renderOverlay.checked);
 
 	if (Boolean(updateFromElement.checked)) {
 		model.updateFromElement(exampleElement);
