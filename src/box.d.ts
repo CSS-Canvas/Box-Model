@@ -23,4 +23,6 @@ export class BoxModel {
 	set allowOverlap (value: boolean);
 
 	update (): void;
+
+	updateFromElement (element: HTMLElement): void;
 }

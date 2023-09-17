@@ -205,4 +205,14 @@ export class BoxModel {
 		borderBox.append(paddingBox);
 		paddingBox.append(contentBox);
 	}
+
+	updateFromElement (element) {
+		const styles = window.getComputedStyle(element);
+		this.#dimensions.content = [parseFloat(styles.width), parseFloat(styles.height)];
+		this.#dimensions.padding = [parseFloat(styles.paddingTop), parseFloat(styles.paddingRight), parseFloat(styles.paddingBottom), parseFloat(styles.paddingLeft)];
+		this.#dimensions.border = [parseFloat(styles.borderTopWidth), parseFloat(styles.borderRightWidth), parseFloat(styles.borderBottomWidth), parseFloat(styles.borderLeftWidth)];
+		this.#dimensions.margin = [parseFloat(styles.marginTop), parseFloat(styles.marginRight), parseFloat(styles.marginBottom), parseFloat(styles.marginLeft)];
+		this.#dimensions.position = [parseFloat(styles.top), parseFloat(styles.right), parseFloat(styles.bottom), parseFloat(styles.left)];
+		this.update();
+	}
 }

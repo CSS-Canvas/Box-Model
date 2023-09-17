@@ -5,6 +5,8 @@ const model = new BoxModel(document.getElementById('display'));
 
 // Page controls.
 const allowOverlap = document.getElementById('allowOverlap');
+const updateFromElement = document.getElementById('updateFromElement');
+const exampleElement = document.getElementById('exampleElement');
 const contentWidth = document.getElementById('contentWidth');
 const contentWidthOutput = document.getElementById('contentWidthOutput');
 const contentHeight = document.getElementById('contentHeight');
@@ -44,6 +46,11 @@ const positionLeftOutput = document.getElementById('positionLeftOutput');
 
 window.update = () => {
 	model.allowOverlap = Boolean(allowOverlap.checked);
+
+	if (Boolean(updateFromElement.checked)) {
+		model.updateFromElement(exampleElement);
+		return;
+	}
 
 	// Content box.
 	model.content = [contentWidth.value, contentHeight.value];
