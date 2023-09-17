@@ -19,6 +19,12 @@ export class BoxModel {
 	get parent (): HTMLElement;
 	set parent (value: HTMLElement);
 
+	get showLabels (): boolean;
+	set showLabels (value: boolean);
+
+	get showDimensions (): boolean;
+	set showDimensions (value: boolean);
+
 	get allowOverlap (): boolean;
 	set allowOverlap (value: boolean);
 

@@ -21,6 +21,8 @@ export class BoxModel {
 	}
 	#element;
 	#parent;
+	#showDimensions = true;
+	#showLabels = true;
 	#spacing = {
 		default: 14,
 		value: 14
@@ -71,16 +73,29 @@ export class BoxModel {
 		this.update();
 	}
 
+	get showLabels () { return this.#showLabels; }
+	set showLabels (value) {
+		this.#showLabels = value;
+		this.update();
+	}
+
+	get showDimensions () { return this.#showDimensions; }
+	set showDimensions (value) {
+		this.#showDimensions = value;
+		this.update();
+	}
+
 	get allowOverlap () { return !Boolean(this.#spacing.value); }
 	set allowOverlap (value) {
 		this.#spacing.value = Boolean(value) ? 0 : this.#spacing.default;
+		this.update();
 	}
 
 	#isZero (value) {
 		return !value || value === '0';
 	}
 
-	#createLabel (value, index, unit = 'px') {
+	#createDimension (value, index, unit = 'px') {
 		const span = document.createElement('span');
 		span.style.position = 'absolute';
 		span.style.zIndex = '1';
@@ -93,7 +108,7 @@ export class BoxModel {
 		return span;
 	}
 
-	#createName (name) {
+	#createLabel (name) {
 		const span = document.createElement('span');
 		span.style.position = 'absolute';
 		span.style.bottom = '0.15em';
@@ -142,9 +157,13 @@ export class BoxModel {
 		contentBox.style.height = `${contentHeight}px`;
 		contentBox.style.minHeight = `${contentHeight}px`;
 		contentBox.style.maxHeight = `${contentHeight}px`;
-		contentBox.append(this.#createLabel(this.content, 0));
-		contentBox.append(this.#createLabel(this.content, 1));
-		contentBox.append(this.#createName('Content'));
+		if (this.showDimensions) {
+			contentBox.append(this.#createDimension(this.content, 0));
+			contentBox.append(this.#createDimension(this.content, 1));
+		}
+		if (this.showLabels) {
+			contentBox.append(this.#createLabel('Content'));
+		}
 
 		// Padding.
 		const paddingBox = document.createElement('div');
@@ -153,11 +172,15 @@ export class BoxModel {
 		paddingBox.style.border = `1px solid ${colors.paddingBorder}`;
 		this.#applyBoxPadding(paddingBox, 'padding');
 		this.#applyBoxBorder(paddingBox, 'padding');
-		paddingBox.append(this.#createLabel(this.padding, 0));
-		paddingBox.append(this.#createLabel(this.padding, 1));
-		paddingBox.append(this.#createLabel(this.padding, 2));
-		paddingBox.append(this.#createLabel(this.padding, 3));
-		paddingBox.append(this.#createName('Padding'));
+		if (this.showDimensions) {
+			paddingBox.append(this.#createDimension(this.padding, 0));
+			paddingBox.append(this.#createDimension(this.padding, 1));
+			paddingBox.append(this.#createDimension(this.padding, 2));
+			paddingBox.append(this.#createDimension(this.padding, 3));
+		}
+		if (this.showLabels) {
+			paddingBox.append(this.#createLabel('Padding'));
+		}
 
 		// Border.
 		const borderBox = document.createElement('div');
@@ -166,11 +189,15 @@ export class BoxModel {
 		borderBox.style.border = `1px solid ${colors.borderBorder}`;
 		this.#applyBoxPadding(borderBox, 'border');
 		this.#applyBoxBorder(borderBox, 'border');
-		borderBox.append(this.#createLabel(this.border, 0));
-		borderBox.append(this.#createLabel(this.border, 1));
-		borderBox.append(this.#createLabel(this.border, 2));
-		borderBox.append(this.#createLabel(this.border, 3));
-		borderBox.append(this.#createName('Border'));
+		if (this.showDimensions) {
+			borderBox.append(this.#createDimension(this.border, 0));
+			borderBox.append(this.#createDimension(this.border, 1));
+			borderBox.append(this.#createDimension(this.border, 2));
+			borderBox.append(this.#createDimension(this.border, 3));
+		}
+		if (this.showLabels) {
+			borderBox.append(this.#createLabel('Border'));
+		}
 
 		// Margin.
 		const marginBox = document.createElement('div');
@@ -179,11 +206,15 @@ export class BoxModel {
 		marginBox.style.border = `1px solid ${colors.marginBorder}`;
 		this.#applyBoxPadding(marginBox, 'margin');
 		this.#applyBoxBorder(marginBox, 'margin');
-		marginBox.append(this.#createLabel(this.margin, 0));
-		marginBox.append(this.#createLabel(this.margin, 1));
-		marginBox.append(this.#createLabel(this.margin, 2));
-		marginBox.append(this.#createLabel(this.margin, 3));
-		marginBox.append(this.#createName('Margin'));
+		if (this.showDimensions) {
+			marginBox.append(this.#createDimension(this.margin, 0));
+			marginBox.append(this.#createDimension(this.margin, 1));
+			marginBox.append(this.#createDimension(this.margin, 2));
+			marginBox.append(this.#createDimension(this.margin, 3));
+		}
+		if (this.showLabels) {
+			marginBox.append(this.#createLabel('Margin'));
+		}
 
 		// Position.
 		const positionBox = document.createElement('div');
@@ -192,11 +223,15 @@ export class BoxModel {
 		positionBox.style.border = `1px dashed ${colors.positionBorder}`;
 		this.#applyBoxPadding(positionBox, 'position');
 		this.#applyBoxBorder(positionBox, 'position');
-		positionBox.append(this.#createLabel(this.position, 0));
-		positionBox.append(this.#createLabel(this.position, 1));
-		positionBox.append(this.#createLabel(this.position, 2));
-		positionBox.append(this.#createLabel(this.position, 3));
-		positionBox.append(this.#createName('Position'));
+		if (this.showDimensions) {
+			positionBox.append(this.#createDimension(this.position, 0));
+			positionBox.append(this.#createDimension(this.position, 1));
+			positionBox.append(this.#createDimension(this.position, 2));
+			positionBox.append(this.#createDimension(this.position, 3));
+		}
+		if (this.showLabels) {
+			positionBox.append(this.#createLabel('Position'));
+		}
 
 		this.#element.innerHTML = '';
 		this.#element.append(positionBox);
