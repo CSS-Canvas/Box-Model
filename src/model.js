@@ -58,7 +58,6 @@ export class BoxModel {
 	get allowOverlap () { return !Boolean(this.#spacing.value); }
 	set allowOverlap (value) {
 		if (this.allowOverlap === value) return;
-		console.log('model');
 		this.#spacing.value = value ? 0 : this.#spacing.default;
 		for (const box of Object.values(this.#boxes)) {
 			box.spacing = this.#spacing.value;
