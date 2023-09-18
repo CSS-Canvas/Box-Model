@@ -1,39 +1,28 @@
-export class BoxModel {
-	constructor (parent: HTMLElement);
+type BoxType = 'content' | 'padding' | 'border' | 'margin' | 'position';
 
+export class Box {
+	constructor (name: string, type: BoxType);
+
+	dimensions: [number, number, number, number];
 	element: HTMLDivElement;
-
-	get content (): [number, number];
-	set content (value: [number, number]);
-
-	get padding (): [number, number, number, number];
-	set padding (value: [number, number, number, number]);
-
-	get border (): [number, number, number, number];
-	set border (value: [number, number, number, number]);
-
-	get margin (): [number, number, number, number];
-	set margin (value: [number, number, number, number]);
-
-	get position (): [number, number, number, number];
-	set position (value: [number, number, number, number]);
-
-	get parent (): HTMLElement;
-	set parent (value: HTMLElement);
+	labels: Array<HTMLSpanElement>;
+	spacing: number;
 
 	get showBorders (): boolean;
 	set showBorders (value: boolean);
 
-	get showDimensions (): boolean;
-	set showDimensions (value: boolean);
+	updateDimensionLabel (index: number, unit = 'px'): void;
 
-	get showLabels (): boolean;
-	set showLabels (value: boolean);
+	update (value: [number, number, number, number], force = false): void;
+}
 
-	get allowOverlap (): boolean;
-	set allowOverlap (value: boolean);
+export class ContentBox extends Box {
+	constructor (name: string);
 
-	update (): void;
+	dimensions: [number, number];
 
-	updateFromElement (element: HTMLElement): void;
+	get showBorders (): boolean;
+	set showBorders (value: boolean);
+
+	update (value: [number, number], force = false): void;
 }

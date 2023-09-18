@@ -8,7 +8,7 @@ export class BoxModelOverlay {
 
 	show (): void;
 
-	render (): void;
-
 	update (): void;
+
+	render (): void;
 }

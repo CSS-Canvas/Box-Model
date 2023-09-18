@@ -1,16 +1,12 @@
 import { BoxModel, BoxModelOverlay } from '../src/index.js';
 
 // Box model.
-const model = new BoxModel(document.getElementById('display'));
-const overlay = new BoxModelOverlay(document.getElementById('exampleElement'));
+window.model = new BoxModel(document.getElementById('display'));
+window.overlay = new BoxModelOverlay(document.getElementById('exampleElement'));
+window.overlay.enabled = false;
 
 // Page controls.
-const showBorders = document.getElementById('showBorders');
-const showDimensions = document.getElementById('showDimensions');
-const showLabels = document.getElementById('showLabels');
-const allowOverlap = document.getElementById('allowOverlap');
 const updateFromElement = document.getElementById('updateFromElement');
-const renderOverlay = document.getElementById('renderOverlay');
 const contentWidth = document.getElementById('contentWidth');
 const contentWidthOutput = document.getElementById('contentWidthOutput');
 const contentHeight = document.getElementById('contentHeight');
@@ -48,50 +44,68 @@ const positionBottomOutput = document.getElementById('positionBottomOutput');
 const positionLeft = document.getElementById('positionLeft');
 const positionLeftOutput = document.getElementById('positionLeftOutput');
 
-window.update = () => {
-	model.showBorders = Boolean(showBorders.checked);
-	model.showDimensions = Boolean(showDimensions.checked);
-	model.showLabels = Boolean(showLabels.checked);
-	model.allowOverlap = Boolean(allowOverlap.checked);
-	overlay.enabled = Boolean(renderOverlay.checked);
-
-	if (Boolean(updateFromElement.checked)) {
-		model.updateFromElement(exampleElement);
-		return;
-	}
-
-	// Content box.
-	model.content = [contentWidth.value, contentHeight.value];
+window.updateContentBox = () => {
 	contentWidthOutput.innerText = `${contentWidth.value}px`;
 	contentHeightOutput.innerText = `${contentHeight.value}px`;
+	if (!Boolean(updateFromElement.checked)) {
+		model.content = [contentWidth.value, contentHeight.value];
+	}
+};
 
-	// Padding box.
-	model.padding = [paddingTop.value, paddingRight.value, paddingBottom.value, paddingLeft.value];
+window.updatePaddingBox = () => {
 	paddingTopOutput.innerText = `${paddingTop.value}px`;
 	paddingRightOutput.innerText = `${paddingRight.value}px`;
 	paddingBottomOutput.innerText = `${paddingBottom.value}px`;
 	paddingLeftOutput.innerText = `${paddingLeft.value}px`;
+	if (!Boolean(updateFromElement.checked)) {
+		model.padding = [paddingTop.value, paddingRight.value, paddingBottom.value, paddingLeft.value];
+	}
+};
 
-	// Border box.
-	model.border = [borderTop.value, borderRight.value, borderBottom.value, borderLeft.value];
+window.updateBorderBox = () => {
 	borderTopOutput.innerText = `${borderTop.value}px`;
 	borderRightOutput.innerText = `${borderRight.value}px`;
 	borderBottomOutput.innerText = `${borderBottom.value}px`;
 	borderLeftOutput.innerText = `${borderLeft.value}px`;
+	if (!Boolean(updateFromElement.checked)) {
+		model.border = [borderTop.value, borderRight.value, borderBottom.value, borderLeft.value];
+	}
+};
 
-	// Margin box.
-	model.margin = [marginTop.value, marginRight.value, marginBottom.value, marginLeft.value];
+window.updateMarginBox = () => {
 	marginTopOutput.innerText = `${marginTop.value}px`;
 	marginRightOutput.innerText = `${marginRight.value}px`;
 	marginBottomOutput.innerText = `${marginBottom.value}px`;
 	marginLeftOutput.innerText = `${marginLeft.value}px`;
+	if (!Boolean(updateFromElement.checked)) {
+		model.margin = [marginTop.value, marginRight.value, marginBottom.value, marginLeft.value];
+	}
+};
 
-	// Position.
-	model.position = [positionTop.value, positionRight.value, positionBottom.value, positionLeft.value];
+window.updatePositionBox = () => {
 	positionTopOutput.innerText = `${positionTop.value}px`;
 	positionRightOutput.innerText = `${positionRight.value}px`;
 	positionBottomOutput.innerText = `${positionBottom.value}px`;
 	positionLeftOutput.innerText = `${positionLeft.value}px`;
-}
+	if (!Boolean(updateFromElement.checked)) {
+		model.position = [positionTop.value, positionRight.value, positionBottom.value, positionLeft.value];
+	}
+};
 
-window.update();
+window.updateAll = () => {
+	updateContentBox();
+	updatePaddingBox();
+	updateBorderBox();
+	updateMarginBox();
+	updatePositionBox();
+};
+
+window.updateFromExampleElement = () => {
+	if (Boolean(updateFromElement.checked)) {
+		model.updateFromElement(exampleElement);
+	} else {
+		updateAll();
+	}
+};
+
+updateAll();

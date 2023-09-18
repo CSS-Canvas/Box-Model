@@ -1,4 +1,4 @@
-import { BoxModel } from './box.js';
+import { BoxModel } from './model.js';
 
 export class BoxModelOverlay {
 	#element;
