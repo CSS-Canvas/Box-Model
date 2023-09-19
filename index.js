@@ -1,4 +1,4 @@
-import { BoxModel, BoxModelOverlay } from 'src/index.js';
+import { BoxModel, BoxModelOverlay } from './src/index.js';
 
 // Box model.
 window.model = new BoxModel(document.getElementById('display'));
