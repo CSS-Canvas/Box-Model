@@ -3,20 +3,20 @@ export class BoxModel {
 
 	element: HTMLDivElement;
 
-	get content () { return this.#boxes.content.dimensions; }
-	set content (value) { this.#boxes.content.update(value); }
+	get content (): [number, number, number, number];
+	set content (value: [number, number, number, number]);
 
-	get padding () { return this.#boxes.padding.dimensions; }
-	set padding (value) { this.#boxes.padding.update(value); }
+	get padding (): [number, number, number, number];
+	set padding (value: [number, number, number, number]);
 
-	get border () { return this.#boxes.border.dimensions; }
-	set border (value) { this.#boxes.border.update(value); }
+	get border (): [number, number, number, number];
+	set border (value: [number, number, number, number]);
 
-	get margin () { return this.#boxes.margin.dimensions; }
-	set margin (value) { this.#boxes.margin.update(value); }
+	get margin (): [number, number, number, number];
+	set margin (value: [number, number, number, number]);
 
-	get position () { return this.#boxes.position.dimensions; }
-	set position (value) { this.#boxes.position.update(value); }
+	get position (): [number, number, number, number];
+	set position (value: [number, number, number, number]);
 
 	get parent (): HTMLElement;
 	set parent (value: HTMLElement);
