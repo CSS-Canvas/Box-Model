@@ -11,6 +11,7 @@ export class BoxModel {
 		margin: new Box('Margin', 'margin'),
 		position: new Box('Position', 'position')
 	};
+	#live = false;
 	#parent;
 	#showDimensions = true;
 	#showLabels = true;
@@ -18,6 +19,7 @@ export class BoxModel {
 		default: 14,
 		value: 14
 	}
+	#targetElement;
 
 	constructor (parent) {
 		this.parent = parent;
@@ -34,6 +36,9 @@ export class BoxModel {
 
 	get margin () { return this.#boxes.margin.dimensions; }
 	set margin (value) { this.#boxes.margin.update(value); }
+
+	get live () { return this.#live; }
+	set live (value) { this.#live = value; value && window.requestAnimationFrame(this.updateFromElement.bind(this, this.#targetElement)) }
 
 	get position () { return this.#boxes.position.dimensions; }
 	set position (value) { this.#boxes.position.update(value); }
@@ -103,11 +108,14 @@ export class BoxModel {
 	}
 
 	updateFromElement (element) {
-		const styles = window.getComputedStyle(element);
+		if (!(element instanceof HTMLElement)) return;
+		this.#targetElement = element;
+		const styles = window.getComputedStyle(this.#targetElement);
 		this.content = [parseValue(styles.width), parseValue(styles.height)];
 		this.padding = [parseValue(styles.paddingTop), parseValue(styles.paddingRight), parseValue(styles.paddingBottom), parseValue(styles.paddingLeft)];
 		this.border = [parseValue(styles.borderTopWidth), parseValue(styles.borderRightWidth), parseValue(styles.borderBottomWidth), parseValue(styles.borderLeftWidth)];
 		this.margin = [parseValue(styles.marginTop), parseValue(styles.marginRight), parseValue(styles.marginBottom), parseValue(styles.marginLeft)];
 		this.position = [parseValue(styles.top), parseValue(styles.right), parseValue(styles.bottom), parseValue(styles.left)];
+		if (this.#live) window.requestAnimationFrame(this.updateFromElement.bind(this, this.#targetElement));
 	}
 }

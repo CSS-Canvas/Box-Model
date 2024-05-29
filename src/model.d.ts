@@ -15,6 +15,9 @@ export class BoxModel {
 	get margin (): [number, number, number, number];
 	set margin (value: [number, number, number, number]);
 
+	get live (): boolean;
+	set live (value: boolean);
+
 	get position (): [number, number, number, number];
 	set position (value: [number, number, number, number]);
 
