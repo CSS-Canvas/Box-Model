@@ -21,6 +21,9 @@ export class BoxModel {
 	get position (): [number, number, number, number];
 	set position (value: [number, number, number, number]);
 
+	get theme (): string;
+	set theme (value: string);
+
 	get parent (): HTMLElement;
 	set parent (value: HTMLElement);
 

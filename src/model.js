@@ -20,6 +20,7 @@ export class BoxModel {
 		value: 14
 	}
 	#targetElement;
+	#theme = 'light';
 
 	constructor (parent) {
 		this.parent = parent;
@@ -38,10 +39,21 @@ export class BoxModel {
 	set margin (value) { this.#boxes.margin.update(value); }
 
 	get live () { return this.#live; }
-	set live (value) { this.#live = value; value && window.requestAnimationFrame(this.updateFromElement.bind(this, this.#targetElement)) }
+	set live (value) {
+		this.#live = value;
+		value && window.requestAnimationFrame(this.updateFromElement.bind(this, this.#targetElement));
+	}
 
 	get position () { return this.#boxes.position.dimensions; }
 	set position (value) { this.#boxes.position.update(value); }
+
+	get theme () { return this.#theme; }
+	set theme (value) {
+		this.#theme = value.toLowerCase();
+		for (const box of Object.values(this.#boxes)) {
+			box.theme = this.#theme;
+		}
+	}
 
 	get parent () { return this.#parent; }
 	set parent (value) {

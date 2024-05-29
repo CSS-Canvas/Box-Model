@@ -1,4 +1,4 @@
-import { boxStyles, colors } from './config.js';
+import { boxStyles, themes } from './config.js';
 import { arraysMatch, isZero } from './utilities.js';
 
 function createBoxLabel (name) {
@@ -29,12 +29,13 @@ export class Box {
 	labels = [];
 	spacing = 14;
 	#showBorders = true;
+	#theme = 'light';
+	#type;
 
 	constructor (name, type) {
+		this.#type = type;
 		const box = document.createElement('div');
 		Object.assign(box.style, boxStyles);
-		box.style.backgroundColor = colors[type].box;
-		box.style.border = `1px ${type === 'position' ? 'dashed' : 'solid'} ${colors[type].border}`;
 		const numberOfLabels = type === 'content' ? 2 : 4;
 		for (let i = 0; i < numberOfLabels; i++) {
 			const label = createDimensionLabel(i);
@@ -46,6 +47,7 @@ export class Box {
 		this.labels.push(label);
 		box.append(label);
 		this.element = box;
+		this.theme = this.#theme;
 	}
 
 	get showBorders () { return this.#showBorders; }
@@ -53,6 +55,13 @@ export class Box {
 		if (this.#showBorders === value) return;
 		this.#showBorders = value;
 		this.update(this.dimensions, true);
+	}
+
+	get theme () { return this.#theme; }
+	set theme (value) {
+		this.#theme = value.toLowerCase();
+		this.element.style.backgroundColor = themes[this.#theme][this.#type].box;
+		this.element.style.border = `1px ${this.#type === 'position' ? 'dashed' : 'solid'} ${themes[this.#theme][this.#type].border}`;
 	}
 
 	updateDimensionLabel (index, unit = 'px') {
