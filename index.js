@@ -5,6 +5,13 @@ window.model = new BoxModel(document.getElementById('display'));
 window.overlay = new BoxModelOverlay(document.getElementById('exampleElement'));
 window.overlay.enabled = false;
 
+function updateTheme (event) {
+	window.model.theme = event.matches ? 'dark' : 'light';
+}
+const query = window.matchMedia('(prefers-color-scheme: dark)');
+updateTheme({ matches: query.matches });
+query.addEventListener('change', updateTheme);
+
 // Page controls.
 const updateFromElement = document.getElementById('updateFromElement');
 const contentWidth = document.getElementById('contentWidth');

@@ -19,38 +19,38 @@
 		<script src="index.js" type="module" defer></script>
 	</head>
 	<body>
-		<h1>Box Model Display</h1>
 		<main>
+			<h1>Box Model Display</h1>
 			<section id="settings">
 				<form action="event.preventDefault()">
 					<h2>Settings</h2>
 					<fieldset>
 						<h3>General</h3>
 						<label for="showBorders">
-							Show Borders
+							<span>Show Borders</span>
 							<input type="checkbox" name="showBorders" id="showBorders" checked oninput="model.showBorders = Boolean(event.target.checked)">
 						</label>
 						<label for="showDimensions">
-							Show Dimensions
+							<span>Show Dimensions</span>
 							<input type="checkbox" name="showDimensions" id="showDimensions" checked oninput="model.showDimensions = Boolean(event.target.checked)">
 						</label>
 						<label for="showLabels">
-							Show Labels
+							<span>Show Labels</span>
 							<input type="checkbox" name="showLabels" id="showLabels" checked oninput="model.showLabels = Boolean(event.target.checked)">
 						</label>
 						<label for="allowOverlap">
-							Allow Overlap
+							<span>Allow Overlap</span>
 							<input type="checkbox" name="allowOverlap" id="allowOverlap" oninput="model.allowOverlap = Boolean(event.target.checked)">
 						</label>
 						<label for="updateFromElement">
-							Update From Element
+							<span>Update From Element</span>
 							<input type="checkbox" name="updateFromElement" id="updateFromElement" oninput="updateFromExampleElement()">
 						</label>
 					</fieldset>
 					<fieldset>
 						<h3>Overlay</h3>
 						<label for="renderOverlay">
-							Render Overlay
+							<span>Render Overlay</span>
 							<input type="checkbox" name="renderOverlay" id="renderOverlay" oninput="overlay.enabled = Boolean(event.target.checked)">
 						</label>
 						<div id="exampleElement">Example element</div>
@@ -58,12 +58,12 @@
 					<fieldset>
 						<h3>Content</h3>
 						<label for="contentWidth">
-							Width
+							<span>Width</span>
 							<input type="range" name="contentWidth" id="contentWidth" min="0" max="1000" step="10" value="200" oninput="updateContentBox()">
 							<output id="contentWidthOutput"></output>
 						</label>
 						<label for="contentHeight">
-							Height
+							<span>Height</span>
 							<input type="range" name="contentHeight" id="contentHeight" min="0" max="1000" step="10" value="200" oninput="updateContentBox()">
 							<output id="contentHeightOutput"></output>
 						</label>
@@ -71,22 +71,22 @@
 					<fieldset>
 						<h3>Padding</h3>
 						<label for="paddingTop">
-							Top
+							<span>Top</span>
 							<input type="range" name="paddingTop" id="paddingTop" min="0" max="500" step="10" value="50" oninput="updatePaddingBox()">
 							<output id="paddingTopOutput"></output>
 						</label>
 						<label for="paddingRight">
-							Right
+							<span>Right</span>
 							<input type="range" name="paddingRight" id="paddingRight" min="0" max="500" step="10" value="50" oninput="updatePaddingBox()">
 							<output id="paddingRightOutput"></output>
 						</label>
 						<label for="paddingBottom">
-							Bottom
+							<span>Bottom</span>
 							<input type="range" name="paddingBottom" id="paddingBottom" min="0" max="500" step="10" value="50" oninput="updatePaddingBox()">
 							<output id="paddingBottomOutput"></output>
 						</label>
 						<label for="paddingLeft">
-							Left
+							<span>Left</span>
 							<input type="range" name="paddingLeft" id="paddingLeft" min="0" max="500" step="10" value="50" oninput="updatePaddingBox()">
 							<output id="paddingLeftOutput"></output>
 						</label>
@@ -94,22 +94,22 @@
 					<fieldset>
 						<h3>Border</h3>
 						<label for="borderTop">
-							Top
+							<span>Top</span>
 							<input type="range" name="borderTop" id="borderTop" min="0" max="500" step="10" value="50" oninput="updateBorderBox()">
 							<output id="borderTopOutput"></output>
 						</label>
 						<label for="borderRight">
-							Right
+							<span>Right</span>
 							<input type="range" name="borderRight" id="borderRight" min="0" max="500" step="10" value="50" oninput="updateBorderBox()">
 							<output id="borderRightOutput"></output>
 						</label>
 						<label for="borderBottom">
-							Bottom
+							<span>Bottom</span>
 							<input type="range" name="borderBottom" id="borderBottom" min="0" max="500" step="10" value="50" oninput="updateBorderBox()">
 							<output id="borderBottomOutput"></output>
 						</label>
 						<label for="borderLeft">
-							Left
+							<span>Left</span>
 							<input type="range" name="borderLeft" id="borderLeft" min="0" max="500" step="10" value="50" oninput="updateBorderBox()">
 							<output id="borderLeftOutput"></output>
 						</label>
@@ -117,22 +117,22 @@
 					<fieldset>
 						<h3>Margin</h3>
 						<label for="marginTop">
-							Top
+							<span>Top</span>
 							<input type="range" name="marginTop" id="marginTop" min="0" max="500" step="10" value="50" oninput="updateMarginBox()">
 							<output id="marginTopOutput"></output>
 						</label>
 						<label for="marginRight">
-							Right
+							<span>Right</span>
 							<input type="range" name="marginRight" id="marginRight" min="0" max="500" step="10" value="50" oninput="updateMarginBox()">
 							<output id="marginRightOutput"></output>
 						</label>
 						<label for="marginBottom">
-							Bottom
+							<span>Bottom</span>
 							<input type="range" name="marginBottom" id="marginBottom" min="0" max="500" step="10" value="50" oninput="updateMarginBox()">
 							<output id="marginBottomOutput"></output>
 						</label>
 						<label for="marginLeft">
-							Left
+							<span>Left</span>
 							<input type="range" name="marginLeft" id="marginLeft" min="0" max="500" step="10" value="50" oninput="updateMarginBox()">
 							<output id="marginLeftOutput"></output>
 						</label>
@@ -140,22 +140,22 @@
 					<fieldset>
 						<h3>Position</h3>
 						<label for="positionTop">
-							Top
+							<span>Top</span>
 							<input type="range" name="positionTop" id="positionTop" min="0" max="500" step="10" value="50" oninput="updatePositionBox()">
 							<output id="positionTopOutput"></output>
 						</label>
 						<label for="positionRight">
-							Right
+							<span>Right</span>
 							<input type="range" name="positionRight" id="positionRight" min="0" max="500" step="10" value="50" oninput="updatePositionBox()">
 							<output id="positionRightOutput"></output>
 						</label>
 						<label for="positionBottom">
-							Bottom
+							<span>Bottom</span>
 							<input type="range" name="positionBottom" id="positionBottom" min="0" max="500" step="10" value="50" oninput="updatePositionBox()">
 							<output id="positionBottomOutput"></output>
 						</label>
 						<label for="positionLeft">
-							Left
+							<span>Left</span>
 							<input type="range" name="positionLeft" id="positionLeft" min="0" max="500" step="10" value="50" oninput="updatePositionBox()">
 							<output id="positionLeftOutput"></output>
 						</label>

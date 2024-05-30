@@ -1,30 +1,45 @@
 :root {
+	--color-background-1: #f8f8f8;
+	--color-background-2: #fff;
+
+	color-scheme: light dark;
 	box-sizing: border-box;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-background-1: #040404;
+		--color-background-2: #111;
+	}
+}
+
 body {
 	margin: 0;
-	background-color: #f8f8f8;
+	background-color: var(--color-background-1);
 }
 
 main {
 	position: relative;
 	display: grid;
-	grid-template-columns: auto;
-	grid-template-rows: auto auto;
-	flex-flow: column nowrap;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto 1fr;
+	gap: 0 16px;
+	height: 100svh;
 }
 
 h1 {
-	margin: 0 0 0.2em;
-	padding-inline-start: 0.25rem;
+	grid-area: 1 / 1 / 2 / 3;
+	margin: 0;
+	padding-inline: 0.5rem;
+	font-size: 1.9em;
 	font-weight: 400;
+	line-height: 1.7em;
 }
 
 h2 {
 	margin: 0.1em 0;
-	padding-inline-start: 0.25rem;
+	padding-inline: 0.6rem;
 	color: grey;
 	font-weight: 300;
 }
@@ -35,13 +50,13 @@ h3 {
 }
 
 section#settings {
-	position: absolute;
 	z-index: 2;
-	left: 0;
-	max-width: 30rem;
-	background-color: white;
-	border: 1px solid lightgrey;
-	border-left: unset;
+	display: flex;
+	flex-flow: column nowrap;
+	width: 100%;
+	margin: 8px 0px 8px 8px;
+	background-color: var(--color-background-2);
+	border-radius: 5px;
 }
 
 section#display {
@@ -55,6 +70,24 @@ fieldset {
 	flex-direction: column;
 	margin: 0;
 	border: unset;
+}
+
+label {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 1ch;
+}
+label > span {
+	display: inline-block;
+	min-width: 6ch;
+}
+label > output {
+	display: inline-block;
+	min-width: 5ch;
+}
+
+input[type="checkbox"] {
+	margin-inline-start: auto;
 }
 
 #exampleElement {
@@ -71,7 +104,8 @@ fieldset {
 	justify-content: center;
 	align-items: center;
 	gap: 1.5rem;
-	margin: 1rem 0;
+	margin-block-start: auto;
+	padding: 1rem 0;
 	font-size: small;
 }
 
