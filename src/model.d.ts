@@ -1,3 +1,5 @@
+import type { Theme } from './config';
+
 export class BoxModel {
 	constructor (parent: HTMLElement);
 
@@ -21,8 +23,8 @@ export class BoxModel {
 	get position (): [number, number, number, number];
 	set position (value: [number, number, number, number]);
 
-	get theme (): string;
-	set theme (value: string);
+	get theme (): Theme;
+	set theme (value: Theme);
 
 	get parent (): HTMLElement;
 	set parent (value: HTMLElement);

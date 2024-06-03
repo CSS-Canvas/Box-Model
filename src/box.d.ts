@@ -11,9 +11,6 @@ export class Box {
 	get showBorders (): boolean;
 	set showBorders (value: boolean);
 
-	get theme (): string;
-	set theme (value: string);
-
 	updateDimensionLabel (index: number, unit = 'px'): void;
 
 	update (value: [number, number, number, number], force = false): void;

@@ -1,5 +1,5 @@
 import { Box, ContentBox } from './box.js';
-import { boxStyles } from './config.js';
+import { boxStyles, boxVariables, themeVariables } from './config.js';
 import { parseValue } from './utilities.js';
 
 export class BoxModel {
@@ -20,7 +20,8 @@ export class BoxModel {
 		value: 14
 	}
 	#targetElement;
-	#theme = 'light';
+	#theme = 'auto';
+	#themeQuery;
 
 	constructor (parent) {
 		this.parent = parent;
@@ -50,9 +51,7 @@ export class BoxModel {
 	get theme () { return this.#theme; }
 	set theme (value) {
 		this.#theme = value.toLowerCase();
-		for (const box of Object.values(this.#boxes)) {
-			box.theme = this.#theme;
-		}
+		this.#updateTheme();
 	}
 
 	get parent () { return this.#parent; }
@@ -63,6 +62,10 @@ export class BoxModel {
 		this.element = document.createElement('div');
 		this.element.className = 'boxModelDisplay';
 		Object.assign(this.element.style, boxStyles);
+		for (const [property, value] of Object.entries(themeVariables)) {
+			this.element.style.setProperty(property, value);
+		}
+		this.#updateTheme();
 		// Assemble the boxes.
 		this.#parent.append(this.element);
 		this.element.append(this.#boxes.position.element);
@@ -129,5 +132,19 @@ export class BoxModel {
 		this.margin = [parseValue(styles.marginTop), parseValue(styles.marginRight), parseValue(styles.marginBottom), parseValue(styles.marginLeft)];
 		this.position = [parseValue(styles.top), parseValue(styles.right), parseValue(styles.bottom), parseValue(styles.left)];
 		if (this.#live) window.requestAnimationFrame(this.updateFromElement.bind(this, this.#targetElement));
+	}
+
+	#updateTheme () {
+		this.#themeQuery ??= window.matchMedia('(prefers-color-scheme: dark)');
+		this.#themeQuery.onchange ??= (query) => {
+			let thing1 = this.#theme;
+			if (this.#theme === 'auto') {
+				thing1 = query?.matches ? 'dark' : 'light';
+			}
+			for (const variable of boxVariables) {
+				this.element.style.setProperty(variable, `var(${variable}-${thing1})`);
+			}
+		}
+		this.#themeQuery.onchange(this.#themeQuery);
 	}
 }
