@@ -46,6 +46,14 @@
 							<span>Update From Element</span>
 							<input type="checkbox" name="updateFromElement" id="updateFromElement" oninput="updateFromExampleElement()">
 						</label>
+						<label for="theme">
+							<span>Theme</span>
+							<select name="theme" id="theme" oninput="model.theme = event.target.value">
+								<option value="auto">auto</option>
+								<option value="dark">dark</option>
+								<option value="light">light</option>
+							</select>
+						</label>
 					</fieldset>
 					<fieldset>
 						<h3>Overlay</h3>

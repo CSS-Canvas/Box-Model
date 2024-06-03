@@ -90,6 +90,10 @@ input[type="checkbox"] {
 	margin-inline-start: auto;
 }
 
+select {
+	margin-inline-start: auto;
+}
+
 #exampleElement {
 	padding: 10px 20px;
 	margin: 2em 0.5em 1em;
