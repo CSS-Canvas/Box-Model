@@ -83,7 +83,7 @@ label > span {
 }
 label > output {
 	display: inline-block;
-	min-width: 5ch;
+	min-width: 6ch;
 }
 
 input[type="checkbox"] {
